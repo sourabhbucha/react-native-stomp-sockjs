@@ -1,5 +1,6 @@
 # react-native-stomp-sockjs
 Working example of socket connection of react native with stomjs and sockjs
+#### This example fixes the issue of Stomp not working with React Native and provides a simple solution for the same: add services/react-stompjs/stomp.js to your code and use it by wrapping your app.
 
 # STOMP.js
 
@@ -29,45 +30,6 @@ or using plugins.
 - Binary payload support
 
 ## Usage
-
-### Browser
-
-```html
-<!--
-    JSPM Generator Import Map
-    Edit URL: https://generator.jspm.io/#U2NgYGBkDM0rySzJSU1hcCguyc8t0AeTWcUO5noGega6SakliaYAYTzJAykA
-  -->
-<script type="importmap">
-  {
-    "imports": {
-      "@stomp/stompjs": "https://ga.jspm.io/npm:@stomp/stompjs@7.0.0/esm6/index.js"
-    }
-  }
-</script>
-
-<!-- ES Module Shims: Import maps polyfill for modules browsers without import maps support (all except Chrome 89+) -->
-<script
-  async
-  src="https://ga.jspm.io/npm:es-module-shims@1.5.1/dist/es-module-shims.js"
-  crossorigin="anonymous"
-></script>
-
-<script type="module">
-  import { Client } from '@stomp/stompjs';
-
-  const client = new Client({
-    brokerURL: 'ws://localhost:15674/ws',
-    onConnect: () => {
-      client.subscribe('/topic/test01', message =>
-        console.log(`Received: ${message.body}`)
-      );
-      client.publish({ destination: '/topic/test01', body: 'First Message' });
-    },
-  });
-
-  client.activate();
-</script>
-```
 
 ### NodeJS
 
